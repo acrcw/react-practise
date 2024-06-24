@@ -9,12 +9,16 @@ import States from "./Components/States";
 import Counter from "./Components/Counter";
 import Parent from "./Components/Parent";
 import ListMap from "./Components/ListMap";
-import Form from "./Components/Form";
+// import Form from "./Components/Form";
+import Signup from "./Components/Signup";
+import Login from "./Components/Login";
+import UserData from "./Components/UserData";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" >
+        <Route index element={<UserData />} />
           <Route path="class" element={<ClassComponent />} />
           <Route path="resume" element={<Main />} />
           <Route path="function" element={<FunctionalComponent />} />
@@ -22,7 +26,8 @@ function App() {
           <Route path="Counter" element={<Counter />} />
           <Route path="usememo" element={<Parent />} />
           <Route path="listmap" element={<ListMap />} />
-          <Route path="Signup" element={<Form />} />
+          <Route path="Signup" element={<Signup />} />
+          <Route path="Login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
