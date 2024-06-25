@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -12,12 +14,22 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
     console.log(formData);
-    alert(`username: ${formData.username},
-    email: ${formData.email},
-    password: ${formData.password},
-    confirmPassword: ${formData.confirmPassword},
-    gender: ${formData.gender},
-    subscribe: ${formData.subscribe}`);
+    fetch("signup", {
+      method: "POST",
+      // "[object Object]" is not valid JSON if i dont json stringify
+      body: JSON.stringify({ ...formData }),
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).then((response) => {
+      return response.json()
+    }).then((data)=>{
+       if (data.message=="Signup Successful")
+       {
+          navigate("/login")
+       }
+    });
   };
 
   const handleCheckboxChange = (e) => {
@@ -37,7 +49,7 @@ const Signup = () => {
               name="username"
               value={formData.username}
               onChange={(e) =>
-                setFormData({ ...formData, username: e.target.value })
+                setFormData({ ...formData, [e.target.name]: e.target.value })
               }
               required
             />
@@ -50,7 +62,7 @@ const Signup = () => {
               name="email"
               value={formData.email}
               onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
+                setFormData({ ...formData, [e.target.name]: e.target.value })
               }
               required
             />
@@ -63,7 +75,7 @@ const Signup = () => {
               name="password"
               value={formData.password}
               onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
+                setFormData({ ...formData, [e.target.name]: e.target.value })
               }
               required
             />
@@ -76,7 +88,7 @@ const Signup = () => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={(e) =>
-                setFormData({ ...formData, confirmPassword: e.target.value })
+                setFormData({ ...formData, [e.target.name]: e.target.value })
               }
               required
             />
@@ -88,7 +100,7 @@ const Signup = () => {
               name="gender"
               value={formData.gender}
               onChange={(e) =>
-                setFormData({ ...formData, gender: e.target.value })
+                setFormData({ ...formData, [e.target.name]: e.target.value })
               }
               required
             >

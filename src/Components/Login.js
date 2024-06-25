@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -8,19 +10,28 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
     console.log(formData);
-    fetch("http://localhost:5000/login", {
+    fetch("/login", {
       method: "POST",
+      // "[object Object]" is not valid JSON if i dont json stringify
       body: JSON.stringify({
         email: formData.email,
         password: formData.password,
+        
       }),
       headers: {
         "Content-Type": "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       
-    }).then((data) => {
-      console.log(data)
+    }).then((response) => response.json()).then((data)=>{
+      if(data.message == "LoggedIn Successfully")
+      {
+        navigate("/")
+      }
+      else
+      {
+        alert(data.message)
+      }
     });
   };
 
