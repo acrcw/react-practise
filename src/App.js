@@ -13,9 +13,11 @@ import ListMap from "./Components/ListMap";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import UserData from "./Components/UserData";
+import ResetPassword from "./Components/ResetPassword";
 function App() {
   return (
     <BrowserRouter>
+        <Nav/>
       <Routes>
         <Route path="/" >
         <Route index element={<UserData />} />
@@ -28,6 +30,7 @@ function App() {
           <Route path="listmap" element={<ListMap />} />
           <Route path="Signup" element={<Signup />} />
           <Route path="Login" element={<Login />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
         </Route>
       </Routes>
     </BrowserRouter>

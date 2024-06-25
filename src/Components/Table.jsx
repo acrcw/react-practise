@@ -7,6 +7,11 @@ function Table({ initiative, headings, table_Rows }) {
       return <th key={index}>{obj.name}</th>;
     });
   }
+
+  const convertTimeStamp = (date) => {
+    const dateParts = date.split("-");
+    return new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0, 2));
+  };
   function renderTableData() {
     return table_Rows?.map((rowData, id) => {
       return (
@@ -23,13 +28,13 @@ function Table({ initiative, headings, table_Rows }) {
           <td id="task_Title_Row">{rowData.username}</td>
           <td>{rowData.email}</td>
           <td>{rowData.password}</td>
-          <td>{rowData.lastLoggedIn}</td>
-          <td>{rowData.createdAt}</td>
+          <td>{convertTimeStamp(rowData.lastLoggedIn).toLocaleString()}</td>
+          <td>{convertTimeStamp(rowData.createdAt).toLocaleString()}</td>
+          {/* <td>{rowData.createdAt}</td> */}
         </tr>
       );
     });
   }
-
 
   return (
     <div className="tracker_Body_Wrapper">

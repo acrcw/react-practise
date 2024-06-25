@@ -1,44 +1,37 @@
 import React from "react";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function Nav() {
   return (
     <header id="home">
-      <nav id="nav-wrap">
+      <nav id="nav-wrap" className="nav">
         <ul id="nav" className="nav">
           <li>
-            <a className="link" href="#home">
+            <Link to="/" className="link">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="link" href="#about">
-              About
-            </a>
+            <Link to="/signup" className="link">
+             Signup
+            </Link>
           </li>
           <li>
-            <a className="link" href="#resume">
-              Resume
-            </a>
+          <Link to="/login" className="link">
+             Login
+            </Link>
           </li>
-          {/* <li>
-              <a className='smoothscroll' href='#portfolio'>
-                Works
-              </a>
-            </li> */}
+        
           <li>
-            <a className="link" href="#testimonials">
-              Testimonials
-            </a>
+          <Link to="/resume" className="link">
+             Resume
+            </Link>
+          <Link to="/resetpassword" className="link">
+              Reset Password
+            </Link>
           </li>
-          <li>
-            <a className="link" href="#contact">
-              Contact
-            </a>
-          </li>
+         
         </ul>
       </nav>
-
-     
     </header>
   );
 }
