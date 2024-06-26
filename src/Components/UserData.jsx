@@ -47,7 +47,21 @@ function UserData() {
     {
       name: "LoggedIn",
     },
+    {
+      name: "Verified",
+    }
   ];
+  const data= [
+    {
+        "userid": "52df451a-5d78-4512-8c24-c9355b4c75a9",
+        "username": "joban",
+        "email": "jobanpreet@cloudeq.com",
+        "password": "$2b$10$YZ542rfPduWebcEHQO6pReYv8lGtNnLgYZUnjCcJ1HeYzcRYnYLRq",
+        "createdAt": 1719371472,
+        "lastLoggedIn": 1719372644,
+        "verified": 1
+    }
+]
 
   return (
     <>

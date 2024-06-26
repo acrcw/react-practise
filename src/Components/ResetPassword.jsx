@@ -4,13 +4,13 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    
   });
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
     console.log(formData);
-    fetch("/resetpassword", {
+    fetch("/forgotpassword", {
       method: "POST",
       // "[object Object]" is not valid JSON if i dont json stringify
       body: JSON.stringify({
@@ -23,7 +23,7 @@ const ResetPassword = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message == "LoggedIn Successfully") {
+        if (data.message == "Password Reset Token has been sent to the registered email") {
           navigate("/");
         } else {
           alert(data.message);
