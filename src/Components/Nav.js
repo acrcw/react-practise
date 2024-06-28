@@ -12,24 +12,31 @@ function Nav() {
           </li>
           <li>
             <Link to="/signup" className="link">
-             Signup
+              Signup
             </Link>
           </li>
           <li>
-          <Link to="/login" className="link">
-             Login
+            <Link to="/login" className="link">
+              Login
             </Link>
           </li>
-        
+
           <li>
-          <Link to="/resume" className="link">
-             Resume
+            <Link to="/resume" className="link">
+              Resume
             </Link>
-          <Link to="/resetpassword" className="link">
+          </li>
+
+          <li>
+            <Link to="/resetpassword" className="link">
               Reset Password
             </Link>
           </li>
-         
+          <li>
+            <Link to="" className="link">
+              Logout
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
