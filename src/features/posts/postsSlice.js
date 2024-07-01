@@ -23,8 +23,6 @@ const postsSlice = createSlice({
         return {
           // It should then return an object with the payload field inside.
           payload: {
-            id: nanoid(),
-            date: new Date().toISOString(),
             title,
             content,
             user: userId,
@@ -63,7 +61,11 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-      });
+      })
+      .addCase(addNewPost.fulfilled, (state, action) => {
+        // We can directly add the new post object to our posts array
+        state.posts.push(action.payload)
+      })
   },
 });
 export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions; // exporting action functions to be used by dispatch
@@ -103,3 +105,13 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 // A "payload creator" callback function that should return a Promise containing some data, or a rejected Promise with an error
 
 // Redux Toolkit's createAsyncThunk API generates thunks that automatically dispatch those "start/success/failure" actions for you.
+export const addNewPost = createAsyncThunk(
+  "posts/addNewPost",
+  // The payload creator receives the partial `{title, content, user}` object
+  async (initialPost) => {
+    // We send the initial data to the fake API server
+    // const response = await client.post('/fakeApi/posts', initialPost)
+    // The response includes the complete post object, including unique ID
+    return initialPost;
+  }
+);

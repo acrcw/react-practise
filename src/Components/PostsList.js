@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { nanoid } from "@reduxjs/toolkit";
-import { postAdded } from "../features/posts/postsSlice";
+import { postAdded,addNewPost } from "../features/posts/postsSlice";
 import { Link } from "react-router-dom";
 import { parseISO, formatDistanceToNow } from "date-fns";
 import { ReactionButtons } from "./ReactionButtons";
@@ -12,6 +12,7 @@ import {
   fetchPosts,
 } from "../features/posts/postsSlice";
 import { fetchUsers } from "../features/users/usersSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 export const PostsList = () => {
   const posts = useSelector(selectAllPosts);
@@ -67,9 +68,18 @@ export const PostsList = () => {
       </Link>
     </article>
   ));
-  const createPost = () => {
+  const createPost = async () => {
     console.log(post);
-    dispatch(postAdded(post.title, post.content, post.userId));
+    try{
+      await dispatch(addNewPost({id:nanoid() ,title, content, user: userId })).unwrap()
+      // Redux Toolkit adds a .unwrap() function to the returned Promise, which will return a new Promise that either has the actual action.payload value from a fulfilled action, or throws an error if it's the rejected action. This lets us handle success and failure in the component using normal try/catch logic.
+
+    }
+    catch(err)
+    {
+      // error occured in thunk promise rejected
+    }
+    // dispatch(postAdded(post.title, post.content, post.userId));
   };
   const usersOptions = users.map((user) => (
     <option key={user.id} value={user.id}>
