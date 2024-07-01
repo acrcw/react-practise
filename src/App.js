@@ -14,6 +14,8 @@ import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import UserData from "./Components/UserData";
 import ResetPassword from "./Components/ResetPassword";
+import { PostsList } from "./Components/PostsList";
+import { EditPostForm } from "./Components/EditPostForms";
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +31,8 @@ function App() {
           <Route path="usememo" element={<Parent />} />
           <Route path="listmap" element={<ListMap />} />
           <Route path="Signup" element={<Signup />} />
+          <Route path="post" element={<PostsList />} />
+          <Route path="/editPost/:postId" element={<EditPostForm />} />
           <Route path="Login" element={<Login />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
         </Route>

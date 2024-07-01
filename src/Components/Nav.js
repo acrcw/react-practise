@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function Nav() {
   return (
     <header id="home">
-      <nav id="nav-wrap" className="nav">
-        <ul id="nav" className="nav">
+      <nav id="nav-wrap" className="nav" >
+        <ul id="nav" className="nav"  style={{position:"relative"}}>
           <li>
             <Link to="/" className="link">
               Home
