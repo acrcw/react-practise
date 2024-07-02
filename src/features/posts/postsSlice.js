@@ -1,5 +1,5 @@
 import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { REHYDRATE } from "redux-persist";
 const initialState = {
   posts: [],
   status: "idle",
@@ -66,6 +66,12 @@ const postsSlice = createSlice({
         // We can directly add the new post object to our posts array
         state.posts.push(action.payload)
       })
+
+      // Redux Persist also allows you to handle rehydration in the Redux Toolkit if you are writing your reducer using the extraReducer object:
+      // builder.addCase(REHYDRATE, (state) => {
+      //   console.log(state)
+      //   return state
+      // })
   },
 });
 export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions; // exporting action functions to be used by dispatch
