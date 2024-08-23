@@ -22,6 +22,7 @@ export default function Counter() {
   }, []);
 
   // useEffect 3 works like componentdidupdate
+  // this useEffect will fire on intial render and when state changes
   useEffect(() => {
     console.log(" 👻 useEffect 3 called only when state updates");
   }, [count]);
