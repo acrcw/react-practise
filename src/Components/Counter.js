@@ -22,7 +22,8 @@ export default function Counter() {
   }, []);
 
   // useEffect 3 works like componentdidupdate
-  // this useEffect will fire on intial render and when state changes
+  // this useEffect will fire on intial mount and when state specified in dependecy changes below is the reson
+  // https://stackoverflow.com/questions/70917313/why-does-useeffect-hook-with-its-dependencies-run-after-first-component-render
   useEffect(() => {
     console.log(" 👻 useEffect 3 called only when state updates");
   }, [count]);
